@@ -1,5 +1,5 @@
 # quote-shufl
-This is a simple project to help familiarize myself with PostgreSQL as a RDBMS and marks my entry point to the world of Databases. The core function of this program is to pull a random quote stored in a DB and display it to the currently logged in user.
+This is a simple project to mark my entry into the Database world and to help familiarize myself with PostgreSQL as a RDBMS. At the basic level, this program pulls a random quote stored in a DB and displays it to the currently logged in user.
 
 ## Project Versions
 - [x] v1: basic command-line application
@@ -40,7 +40,24 @@ COPY quote(body, source) FROM '</path/to/csv/file>' WITH (FORMAT CSV, HEADER TRU
 
 ## Common Issues
 ### Permission Denied
-If you encounter a `permission denied for table` message, ensure you have granted privilege to your database user. Using the  `GRANT` command, from the psql terminal, run the following SQL command:
+If you encounter a `permission denied for table` message, check that you have granted appropriate privileges to your database user. You can use the [`GRANT`](https://www.postgresql.org/docs/11/sql-grant.html) command to control access to a database, tables, and sequences.
+
+To grant `ALL PRIVILEGES` to a user on the database and all tables, connect to the desired database in psql and run the following SQL commands:
 ```SQL
+GRANT ALL PRIVILEGES ON DATABASE TO testuser;
+
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO testuser;
+
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO testuser;
 ```
+
+For a least-privileges approach, adjust the commands above to look more like the following:
+```SQL
+GRANT CONNECT ON DATABASE TO testuser;
+
+GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO testuser;
+
+GRANT SELECT, USAGE ON ALL SEQUENCES IN SCHEMA public TO testuser;
+```
+
+
