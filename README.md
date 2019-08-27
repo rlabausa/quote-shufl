@@ -35,7 +35,7 @@ CREATE TABLE quote_tag (
 ## Bulk-Loading the Data
 The data set used in this project can be found in `/data` in the root of the project directory. Data can be loaded into a database in `psql` using the `COPY` command:
 ```SQL
-COPY quote(body, source) FROM '</path/to/csv/file>' WITH (FORMAT CSV, HEADER TRUE);
+COPY quote(body, source) FROM '/home/myusername/Downloads/quote.csv' WITH (FORMAT CSV, HEADER TRUE);
 ```
 
 ## Common Issues
