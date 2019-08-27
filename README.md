@@ -45,18 +45,14 @@ If you encounter a `permission denied for table` message, check that you have gr
 To grant `ALL PRIVILEGES` to a user on the database and all tables, connect to the desired database in psql and run the following SQL commands:
 ```SQL
 GRANT ALL PRIVILEGES ON DATABASE testdb TO testuser;
-
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO testuser;
-
 GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO testuser;
 ```
 
 For a least-privileges approach, adjust the commands above to look more like the following:
 ```SQL
 GRANT CONNECT ON DATABASE testdb TO testuser;
-
 GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO testuser;
-
 GRANT SELECT, USAGE ON ALL SEQUENCES IN SCHEMA public TO testuser;
 ```
 
