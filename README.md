@@ -33,14 +33,14 @@ CREATE TABLE quote_tag (
 );
 ```
 ## Bulk-Loading the Data
-The data set used in this project can be found in `/data` in the root of the project directory. Data can be loaded into a database in `psql` using the `COPY` command like so:
+The data set used in this project can be found in `/data` in the root of the project directory. Data can be loaded into a database in `psql` using the `COPY` command:
 ```SQL
 COPY quote(body, source) FROM '</path/to/csv/file>' WITH (FORMAT CSV, HEADER TRUE);
 ```
 
 ## Common Issues
 ### Permission Denied
-If you encounter a `permission denied for table` message, check that you have granted appropriate privileges to your database user. You can use the [`GRANT`](https://www.postgresql.org/docs/11/sql-grant.html) command to control access to a database, tables, and sequences.
+If you encounter a `permission denied for table` message, check that you have granted appropriate privileges to your database user. You can use the [`GRANT`](https://www.postgresql.org/docs/11/sql-grant.html) command to control access to databases, tables, and sequences.
 
 To grant `ALL PRIVILEGES` to a user on the database and all tables, connect to the desired database in psql and run the following SQL commands:
 ```SQL
