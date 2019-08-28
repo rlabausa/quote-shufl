@@ -1,5 +1,5 @@
 # quote-shufl
-This is a simple project to mark my entry into the Database world and to help familiarize myself with PostgreSQL as a RDBMS. At the basic level, this program pulls a random quote stored in a DB and displays it to the currently logged in user.
+This is a simple project to mark my entry into the database world and to help familiarize myself with PostgreSQL 11 as a Relational Database Management System (RDBMS). At the basic level, this program pulls a random quote stored in a DB and displays it to the currently logged in user.
 
 ## Project Versions
 - [x] v1: basic command-line application
