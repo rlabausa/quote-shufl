@@ -1,0 +1,18 @@
+{% extends 'form_tag_new.html' %}
+
+{% block h3 %}
+    Update
+{% endblock %}
+
+{% block t_id_field %}
+<div class="row input-field">
+        <i class="material-icons prefix">fingerprint</i>
+        {{ form.tag_id.label() }}
+        {{ form.tag_id(disabled=True) }}
+</div>
+{% endblock %}
+
+{% block t_submit %}
+    {{ form.tag_submit(class_='btn waves-light deep-orange lighten-2') }}
+    {{ form.tag_delete(class_='btn waves-light deep-orange lighten-2') }}
+{% endblock %}

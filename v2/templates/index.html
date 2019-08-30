@@ -1,0 +1,17 @@
+{% extends 'base.html'%}
+
+{#{% block title %}
+{% endblock%}#}
+
+{% block content %}
+<div class="container center-justify">
+    <h2>[Hello, {{ username }}] <i class="material-icons small">power_settings_new</i></h2>
+    <hr>
+    
+        <blockquote>
+            {{ quote['body'] }}
+        </blockquote>
+        {{ quote['source'] }}
+</div>
+
+{% endblock %}

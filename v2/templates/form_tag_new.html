@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3 class='center-align'>{% block h3 %}Add New {% endblock %}[tag]</h3>
+<form action="" method="POST" class="col s12" novalidate>
+    {{ form.hidden_tag() }}
+    <div class="container">
+        {% block t_id_field%}
+        {% endblock %}
+        <div class="row input-field">
+            <i class="material-icons prefix">note</i>
+            {{ form.tag_name.label() }}
+            {{ form.tag_name() }}
+        </div>
+        <div class="row center-align">
+            {# Check for any flashed messages #}
+            {% with messages = get_flashed_messages() %}
+
+            {% if messages %}
+            <ul>
+                {% for message in messages %}
+                <li>
+                    <span class=""><b>{{ message }}</b></span>
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {% endwith %}
+        </div>
+        <div class="row center-align">
+                {% block t_submit %}
+                    {{ form.tag_submit(class_='btn waves-light deep-orange lighten-2') }}
+                {% endblock %}
+        </div>
+
+    </div>
+</form>
+{% endblock %}
