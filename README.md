@@ -10,7 +10,7 @@ This is a simple project to mark my entry into the database world and to help fa
   - ORM with SQLAlchemy
 
 ## Running the Program
-Before you can run either of the programs, you will need to set up a Postgres database with the relations described in the [Schema](#Schema) with some sample [data](#Bulk-Loading-The-Data). You may also want to set up a user/password to connect to the database via a connection string. 
+Before you can run either of the programs, you will need to set up a Postgres database with the relations described in the [Schema](#Schema) section with some sample [data](#Bulk-Loading-The-Data). You may also want to set up a user/password to connect to the database via a connection string. 
 
 Once you've set up the database and loaded in the data, you will need to install all the required dependencies. Change directories into the version of the project you want to run. 
 
