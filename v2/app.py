@@ -91,8 +91,6 @@ def quote_new():
     form = QuoteForm()
 
     if form.validate_on_submit():
-        print('submitted')
-
         db.quote_insert_one(form.quote_body.data, form.quote_source.data)
         flash('Successful INSERT', 'message')
 
@@ -127,7 +125,6 @@ def quote_tag_update(q_id, t_id):
             flash('Successful DELETE', 'message')
 
         return redirect(url_for('quote_tag'))
-
     
     return render_template('form_quotetag_update.html',
                             form=form,
@@ -155,16 +152,13 @@ def quote_tag_new():
 def tag():
     cols = db.table_get_all_colnames('tag')
     rows = db.tag_select_all()
-    h_value = '[tag]'
-    view_function = 'tag_new'
 
     return render_template('table_auto.html',
                             cols=cols, 
                             rows=rows, 
                             h_value='[tag]', 
                             function_new='tag_new',
-                            function_update='tag_update'
-    )
+                            function_update='tag_update')
 
 @app.route('/tags/new', methods=['GET', 'POST'])
 def tag_new():
@@ -183,14 +177,11 @@ def tag_new():
     flash_validation_errors(form)
 
     return render_template('form_tag_new.html', 
-    form=form
-    )
+                            form=form)
 
 @app.route('/tags/<int:id>', methods=['GET', 'POST'])
 def tag_update(id):
-
     tag_name = db.tag_select_by_id(id)['name']
-
     form = TagForm(tag_id=id, tag_name=tag_name)
 
     if form.validate_on_submit():
