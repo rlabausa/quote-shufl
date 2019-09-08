@@ -40,6 +40,11 @@
             </ul>
         </div>
     </nav>
+    <ul class="sidenav" id="mobile-menu">
+        <li><a href="{{ url_for('quote') }}">[quote]</a></li>
+        <li><a href="{{ url_for('quote_tag') }}">[quote_tag]</a></li>
+        <li><a href="{{ url_for('tag') }}">[tag]</a></li>
+    </ul>
     
     <h3 class="center-align">{% block h_val %}{% endblock %}</h3>
 
@@ -48,6 +53,12 @@
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+          document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.sidenav');
+    var instances = M.Sidenav.init(elems);
+  });
+    </script>
 </body>
 
 </html>
