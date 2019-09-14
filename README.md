@@ -46,7 +46,7 @@ Once you have your .env file configured with the appropriate information for you
 ```
 flask run
 ```
-You should then be able to access the application through the browser at http://localhost:5000/.
+You should then be able to access the application through a browser (Firefox/Chrome recommended) at http://localhost:5000/.
 
 ### v3
 Similar to v2, you will need to set up your **.env** with the appropriate information for your database. However, in order to access the admin pages, which house endpoints for CRUD operations, you will need to create an admin user. In order to do this, you will need to create a table in the database to store the admin users. You can do this by running the following commands in psql:
@@ -93,7 +93,7 @@ ON
   qt.tag_id = t.id
 ;
 ```
-After that, you may need to grant your user privileges on the `combined_tables` VIEW if user access is denied. This can be done by using the same SQL commands used in granting users privileges on [tables](#Permission-Denied).
+After that, you may need to grant your user privileges on the `combined_tables` VIEW if user access is denied. This can be done by using the same SQL commands used in granting users privileges on [tables](#Granting-Permissions).
 
 Now, you should be able to run app.py with the command:
 ```
@@ -129,19 +129,19 @@ CREATE TABLE quote_tag (
 ```
 
 ## psql 
-### Creating Users
-You can create a user in psql with the `CREATE` command. For example:
-```SQL
-CREATE USER testuser WITH PASSWORD 'testpassword';
-```
 ### Bulk-Loading the Data
 The data set used in this project can be found in `/data` in the root of the project directory. Data can be loaded into a database in `psql` using the [`COPY`](https://www.postgresql.org/docs/11/sql-copy.html) command:
 ```SQL
 COPY quote(body, source) FROM '/path/to/quote.csv' WITH (FORMAT CSV, HEADER TRUE);
 ```
 
-## Common Issues
-### Permission Denied
+### Creating Users
+You can create a user in psql with the `CREATE` command. For example:
+```SQL
+CREATE USER testuser WITH PASSWORD 'testpassword';
+```
+
+### Granting Permissions
 If you encounter a `permission denied for table` message, check that you have granted appropriate privileges to your database user. You can use the [`GRANT`](https://www.postgresql.org/docs/11/sql-grant.html) command to control access to databases, tables, and sequences.
 
 To grant `ALL PRIVILEGES` to a user on the database and all tables, connect to the desired database in psql and run the following SQL commands:
