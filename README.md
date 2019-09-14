@@ -1,38 +1,103 @@
 # quote-shufl
-This is a simple project to mark my entry into the database world and to help familiarize myself with PostgreSQL 11 as a Relational Database Management System (RDBMS). At the basic level, this program pulls a random quote stored in a DB and displays it to the currently logged in user.
+This is a simple Python3 project to mark my entry into the database world and to help familiarize myself with PostgreSQL 11 as a Relational Database Management System (RDBMS). At the basic level, this program pulls a random quote stored in a DB and displays it to the currently logged in user.
 
 ## Project Versions
 - [x] **v1**: basic command-line application
 - [x] **v2**: crude web app (with CRUD functionality) built with [Flask](https://flask.palletsprojects.com/en/1.1.x/) and [Materialize](https://materializecss.com/) frameworks
-- [ ] **v3**: improved web app (v2 but *better*):
+- [x] **v3**: improved web app (v2 but *better*):
   - CRUD operations via admin interface
   - complex queries simplified with views
-  - ORM with SQLAlchemy
+  - ~ORM with SQLAlchemy~
+- [ ] **v4**: to be continued...
 
 ## Running the Program
-Before you can run either of the programs, you will need to set up a Postgres database with the relations described in the [Schema](#Schema) section with some sample [data](#Bulk-Loading-The-Data). You may also want to set up a user/password to connect to the database via a connection string. 
+Before running either instances of the project, you will need to set up a PostgreSQL database with the relations described in the [Schema](#Schema) section. Sample data is provided in the `/data` directory of the repo, and can be loaded into the database by following the guide in the [psql](#Bulk-Loading-The-Data) section. In PostgreSQL, you will also need to create a user with the appropriate privileges in order to access the database. This is also covered in the [psql](#Creating-Users) section.
 
-Once you've set up the database and loaded in the data, you will need to install all the required dependencies. Change directories into the version of the project you want to run. 
+Once the database is set up and the data is loaded in, you will need to install all the required dependencies. Change directories into the version of the project that you wish to run.
 
-From a clean Python virtual environment, run:
+Then, from a clean Python virtual environment, run the command:
 ```
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
+### v1
+Before you can run quote-shufl.py, you will need to set up the proper configuration file for the database. `v1` reads the DB configurations (host, user, password, ports, etc.) from a **.ini** file. Replace the information in `/v1/conf/db.ini` with the information that corresponds to the database and user information that you set up previously.
 
-Depending on which version of the project you are running, you will need to set up a configuration file. `v1` reads the DB configurations (host, user, password, ports, etc.) from a **.ini** file. `v2` loads configurations as environment variables from a **.env** file. Sample configuration files can be found in the each directory.
-
-Once your configuration file is set up, if you want to run **v1**, you simply launch the program as you would any Python program:
+Once your configuration file is set up, you can launch the program from your virtual environment as you would any Python program:
 ```
-python quote-shufl.py
+python3 quote-shufl.py
 ```
+If you would like to make the program a standalone executable, you will need to modify the shebang line at the top of the script with the absolute path to your virtual environment's python interpreter. You can find the path simply by running the following command (with your virtual environment activated):
+```
+which python3
+```
+To make the script executable, run the Linux command:
+```
+chmod +x quote-shufl.py
+```
+And now, you can run the script with `./`:
+```
+./quote-shufl.py
+```
+### v2
+Before you can run app.py, you will need to configure a **.env** file. `v2` of the project loads DB configurations as environment variables from a .env file. A sample configuration can be found in `/v2/.env.example`. As shown in the example .env file, it sets the `FLASK_APP` and `FLASK_ENV` variables so you won't have to export them every time you run the application from a new terminal session (without this you would need to run `export FLASK_APP=app.py` and `export FLASK_ENV=DEBUG` in the Linux terminal before starting the app).
 
-To run **v2**, assuming you have set your `FLASK_APP` environment variables in your **.env** file, run the flask command:
+Once you have your .env file configured with the appropriate information for your database, run the following command in the terminal:
 ```
 flask run
 ```
-
 You should then be able to access the application through the browser at http://localhost:5000/.
 
+### v3
+Similar to v2, you will need to set up your **.env** with the appropriate information for your database. However, in order to be able to access the admin pages, which house endpoints for CRUD operations, you will need to create an admin user. In order to do this, you will need to create a table in the database to store the admin users. You can do this by running the following commands in psql:
+```SQL
+-- create a table to store admin users
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY,
+  username TEXT NOT NULL UNIQUE,
+  password TEXT NOT NULL
+);
+
+-- import cryptographic module (need hash functions)
+CREATE EXTENSION pgcrypto;
+
+-- creates an admin user and stores the corresponding password as a hash 
+INSERT INTO users (username, password) 
+VALUES (
+  'admin01',
+  crypt('password', gen_salt('md5'))
+);
+```
+> *Note*:  
+You may adjust the *username* and *password* to any string that you wish, however the application is by no means secure, so you may not want to use any real or sensitive usernames/passwords.
+
+Then, you will need to set up a VIEW in Postgres, which is accessed in the application (not in the original database design). 
+
+```SQL
+-- links the tables together for denormalized view
+CREATE VIEW combined_tables AS
+SELECT 
+  q.id AS quote_id,
+  q.body AS quote,
+  q.source AS source,
+  t.name AS tag,
+  t.id AS tag_id
+FROM quote q
+INNER JOIN 
+  quote_tag qt
+ON 
+  q.id = qt.quote_id
+INNER JOIN
+  tag t
+ON
+  qt.tag_id = t.id
+;
+```
+After that, you may need to grant your user privileges on the `combined_tables` VIEW if user access is denied. This can be done by using the same SQL commands used in granting users privileges on [tables](#Permission-Denied).
+
+Now, you should be able to run app.py with the command:
+```
+flask run
+```
 
 ## Database Design
 ### Entity Relationship Diagram (ERD)
