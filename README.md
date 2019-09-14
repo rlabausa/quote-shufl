@@ -48,7 +48,7 @@ flask run
 You should then be able to access the application through the browser at http://localhost:5000/.
 
 ### v3
-Similar to v2, you will need to set up your **.env** with the appropriate information for your database. However, in order to be able to access the admin pages, which house endpoints for CRUD operations, you will need to create an admin user. In order to do this, you will need to create a table in the database to store the admin users. You can do this by running the following commands in psql:
+Similar to v2, you will need to set up your **.env** with the appropriate information for your database. However, in order to access the admin pages, which house endpoints for CRUD operations, you will need to create an admin user. In order to do this, you will need to create a table in the database to store the admin users. You can do this by running the following commands in psql:
 ```SQL
 -- create a table to store admin users
 CREATE TABLE users (
