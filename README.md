@@ -40,7 +40,7 @@ And now, you can run the script with `./`:
 ./quote-shufl.py
 ```
 ### v2
-Before you can run app.py, you will need to configure a **.env** file. `v2` of the project loads DB configurations as environment variables from a .env file. A sample configuration can be found in `/v2/.env.example`. As shown in the example .env file, it sets the `FLASK_APP` and `FLASK_ENV` variables so you won't have to export them every time you run the application from a new terminal session (without this you would need to run `export FLASK_APP=app.py` and `export FLASK_ENV=DEBUG` in the Linux terminal before starting the app).
+Before you can run app.py, you will need to configure a **.env** file. `v2` of the project loads DB configurations as environment variables from a .env file. A sample configuration can be found in `/v2/.env.example`. As shown in the example .env file, it sets the `FLASK_APP` and `FLASK_ENV` variables so you won't have to export them every time you run the application from a new terminal session (without this you would need to run `export FLASK_APP=app.py` and `export FLASK_ENV=development` in the Linux terminal before starting the app).
 
 Once you have your .env file configured with the appropriate information for your database, run the following command in the terminal:
 ```
