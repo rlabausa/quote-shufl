@@ -1,0 +1,36 @@
+{% extends 'form_quotetag_new.html' %}
+
+{% block h3 %}
+    Update
+{% endblock %}
+
+{% block input_rows %}
+    <div class="row input-field">
+        <div class="col s2">
+        <i class="material-icons prefix">format_quote</i>
+            {{ form.quote_id.label() }}
+                {{ form.quote_id(disabled=True) }}
+        </div>
+        <div class="col s10">
+            {{ form.quote_body.label() }}
+            {{ form.quote_body(disabled=True, class_='materialize-textarea') }}
+        </div>
+    </div>
+    <div class="row input-field">
+        <div class="col s2">
+        <i class="material-icons prefix">note</i>
+            {{ form.tag_id.label() }}
+            {{ form.tag_id(disabled=True) }}
+        </div>
+        <div class="col s10">
+            {{ form.tag_name.label() }}
+            {{ form.tag_name(disabled=True) }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block q_t_button %}
+    {{ form.quotetag_submit(class_='btn waves-light deep-orange lighten-2', value='Delete') }}
+{% endblock %}
+
+

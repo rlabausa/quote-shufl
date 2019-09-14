@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3 class="center-align">[ tags ]</h3>
+<br>
+<!-- <h5 class="center-align">pick your poison...</h5> -->
+<br>
+<br>
+<!-- <h6 class="center-align">Welcome to the tags page! We'll redirect you to a list of the quotes that you want to see. Pick your poison</h6> -->
+<form action="" method="POST" class="col s12" novalidate>
+    {{ form.hidden_tag() }}
+    <div class="container">
+        <div class="row input-field">
+            <div class="col s4"></div>
+            
+            <div class="col s4">
+                <i class="material-icons prefix">note</i>
+                {{ form.tag_select() }}
+            </div>
+            
+            <div class="col s4"></div>
+
+        </div>
+        <div class="row center-align input-field">
+            {{ form.tag_submit(class_='btn waves-light deep-orange lighten-2') }}
+        </div>
+    </div>
+</form>
+{% endblock %}
+
+{% block scripts %}
+<!-- Initialize select-->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('select');
+            var instances = M.FormSelect.init(elems);
+        });
+    </script>
+{% endblock %}

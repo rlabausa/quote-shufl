@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3 class="center">{{ page }}</h3>
+<div class="container">
+    <table>
+        <thead>
+            <tr>
+                <th>quote</th>
+                <th>source</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for row in rows%}
+                <tr>
+                    <td>{{ row['quote'] }}</td>
+                    <td>{{ row['source'] }}</td>
+                </tr>
+            {% endfor %}
+
+
+        </tbody>
+
+    </table>
+</div>
+{% endblock %}

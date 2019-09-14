@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3 class='center-align'>{% block h3 %} Login {% endblock %}</h3>
+<form action="" method="POST" class="col s12" novalidate>
+    {{ form.hidden_tag() }}
+    <div class="container">
+        <div class="row input-field">
+            <i class="material-icons prefix">perm_identity</i>
+            {{ form.username.label() }}
+            {{ form.username() }}
+
+        </div>
+        <div class="row input-field">
+            <i class="material-icons prefix">lock</i>
+            {{ form.password.label() }}
+            {{ form.password() }}
+        </div>
+        <div class="row center-align">
+            {# Check for any flashed messages #}
+            {% with messages = get_flashed_messages() %}
+
+            {% if messages %}
+            <ul>
+                {% for message in messages %}
+                <li>
+                    <span class=""><b>{{ message }}</b></span>
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {% endwith %}
+        </div>
+        <div class="row center-align input-field">
+                {{ form.login_submit(class_='btn waves-light deep-orange lighten-2') }}
+        </div>
+
+    </div>
+</form>
+{% endblock %}

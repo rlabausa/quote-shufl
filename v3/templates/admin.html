@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block nav_main%}
+    <li>
+        <a href="{{ url_for('index') }}">
+            <i><b>quote-shufl</b></i>
+        </a>
+    </li>
+    <li><a href="{{ url_for('admin') }}">[admin]</a></li>
+    <li><a href="{{ url_for('quote') }}">[quote]</a></li>
+    <li><a href="{{ url_for('quote_tag') }}">[quote_tag]</a></li>
+    <li><a href="{{ url_for('tag') }}">[tag]</a></li>
+    <a href="{{ url_for('logout') }}" class="right">logout</a>
+    
+{% endblock %}
+
+{% block nav_mobile %}
+    <li>
+        <a href="{{ url_for('index') }}">
+            <i class="small material-icons">home</i>
+            <b>quote-shufl</b>
+        </a>
+    </li>
+    <li>
+        <a href="{{ url_for('admin') }}">
+        <i class="small material-icons">account_circle</i>
+        [admin]
+        </a>
+    </li>      
+    <li><a href="{{ url_for('quote') }}">
+            <i class="small material-icons">format_quote</i>
+            [quote]
+        </a>
+    </li>
+    <li>
+        <a href="{{ url_for('quote_tag') }}">
+            [quote_tag]
+            <i class="small material-icons">note</i>
+        </a>
+    </li>
+    <li>
+        <a href="{{ url_for('tag') }}">
+            [tag]
+            <i class="small material-icons">note</i>
+        </a>
+    </li>
+    <li>
+        <a href="{{ url_for('logout') }}">
+            <i class="small material-icons">exit_to_app</i>
+            <b>logout</b>
+        </a>
+    </li>  
+    
+{% endblock %}
+
+{% block h_val %}
+    [> quote-shufl admin ]
+{% endblock %}
+
+{% block content %}
+<div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <th>quote_id</th>
+                    <th>quote</th>
+                    <th>source</th>
+                    <th>tag</th>
+                    <th>tag_id</th>
+                </tr>
+            </thead>
+    
+            <tbody>
+                {% for row in rows %}
+                    <tr>
+                        <td>{{ row['quote_id'] }}</td>        
+                        <td>{{ row['quote'] }}</td>
+                        <td>{{ row['source'] }}</td>
+                        <td>{{ row['tag'] }}</td>
+                        <td>{{ row['tag_id'] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+    
+        </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'admin.html' %}
+{% block h_val %}
+    {{ h_value }}
+    <a href="{{ url_for(function_new) }}" class="btn-floating btn-small waves-effect waves-light deep-orange lighten-1">
+        <i class="material-icons">add</i>
+    </a>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <table>
+        <thead>
+            <tr>
+                {% for col in cols %}
+                <th>{{ col['column_name'] }}</th>
+                {% endfor %}
+                <th>edit</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% if function_update == 'quote_tag_new '%}
+                {% set ns = namespace(q_id=0, t_id=0)%}
+            {% else %}
+                {% set ns = namespace(row_id = 0)%}
+            {% endif %}
+            
+            {% for row in rows %}
+            <tr>
+                {% for col in cols %}
+                    {% set col_name = col['column_name']%}
+                    {% set item = row[col_name] %}
+                    <td>{{ item }}</td>
+
+                    {% if col_name == 'id' %}
+                        {% set ns.row_id = item %}
+                    {% endif %}
+                    {% if col_name == 'quote_id' %}
+                        {% set ns.q_id = item %}
+                    {% endif %}
+                    {% if col_name == 'tag_id' %}
+                        {% set ns.t_id = item %}
+                    {% endif %}
+                {% endfor %}
+                <td>
+                {% if function_update == 'quote_tag_update' %}
+                    <a href="{{ url_for(function_update, q_id=ns.q_id, t_id=ns.t_id) }}">
+                        <i class="material-icons deep-orange-text text-lighten-1">mode_edit</i>
+                    </a>
+                {% else %}
+                    <a href="{{ url_for(function_update, id=ns.row_id) }}">
+                        <i class="material-icons deep-orange-text text-lighten-1">mode_edit</i>
+                    </a>
+                </td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'form_quotetag_new.html' %}
+
+{% block h3 %}
+    Update
+{% endblock %}
+
+{% block q_id_field %}
+    {{ form.quote_id(disabled=True) }}
+{% endblock %}
+
+{% block t_id_field %}
+    {{ form.tag_id(disabled=True) }}
+{% endblock %}
+
+{% block q_t_button %}
+    {{ form.quotetag_submit(class_='btn waves-light deep-orange lighten-2', value='Delete') }}
+{% endblock %}
+
+{% block test %}
+<div class="row input-field">
+    {{ form.quote_body.label() }}
+    {{ form.quote_body(disabled=True, class_='materialize-textarea') }}
+</div>
+<div class="row input-field">
+        {{ form.tag_name.label() }}
+        {{ form.tag_name(disabled=True) }}
+</div>
+{% endblock %}
+

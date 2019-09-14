@@ -1,0 +1,57 @@
+/* label color */
+
+.input-field label {
+    /* color: #cfd8dc !important;  */
+    color: #ff8a65 !important;
+}
+
+/* label focus color */
+
+.input-field input[type=text]:focus+label, .input-field input[type=password]:focus+label, .materialize-textarea:focus:not([readonly]){
+    color: #000;
+    border-bottom: 1px solid #ff8a65 !important;
+    box-shadow: 0 1px 0 0 #ff8a65 !important;
+}
+
+/* label underline focus color */
+
+.input-field input[type=text]:focus, .input-field input[type=password]:focus, .materialize-textarea:focus:not([readonly]){
+    border-bottom: 1px solid #ff8a65 !important;
+    box-shadow: 0 1px 0 0 #ff8a65 !important;
+}
+
+/* valid color */
+
+.input-field input[type=text].valid, .input-field input[type=password].valid {
+    border-bottom: 1px solid #000 !important;
+    box-shadow: 0 1px 0 0 #000 !important;
+}
+
+/* invalid color */
+
+.input-field input[type=text].invalid {
+    border-bottom: 1px solid red !important;
+    box-shadow: 0 1px 0 0 red !important;
+}
+
+/* icon prefix focus color */
+
+.input-field .prefix.active {
+    color: #ff8a65 !important;
+}
+
+blockquote{
+    margin: 20px 0;
+    padding-left: 1.5rem;
+    border-left: 5px solid #ff8a65; 
+    font-size: 1.25rem;
+}
+
+.error_msg{
+    color: #f44336;
+}
+
+div.select-wrapper span{
+    /* color: #ff8a65 */
+    color: #000
+}

@@ -1,0 +1,26 @@
+{% extends 'form_quote_new.html' %}
+
+{% block h3 %}
+    Update
+{% endblock %}
+
+{% block q_id_field %}
+    <div class="row input-field">
+        <i class="material-icons prefix">fingerprint</i>
+        {{ form.quote_id.label() }}
+        {{ form.quote_id(disabled=True) }}
+    </div>
+{% endblock %}
+
+{% block q_body_field %}
+    {{ form.quote_body(class_='materialize-textarea') }}
+{% endblock %}
+
+{% block q_source_field %}
+    {{ form.quote_source() }}
+{% endblock %}
+
+{% block update_content %}
+    {{ form.quote_submit(class_='btn waves-light deep-orange lighten-2', value='Update') }}
+    {{ form.quote_delete(class_='btn waves-light deep-orange lighten-2') }}
+{% endblock %}
