@@ -72,7 +72,7 @@ def quote_update(id):
             else:
                 flash('Successful UPDATE', 'message')
             
-            redirect(url_for('quote_update', id=id))
+            return redirect(url_for('quote_update', id=id))
         
         elif form.quote_delete.data:
             response = db.quote_delete_one(id)
