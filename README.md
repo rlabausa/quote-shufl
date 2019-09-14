@@ -19,6 +19,7 @@ Then, from a clean Python virtual environment, run the command:
 ```
 pip3 install -r requirements.txt
 ```
+Then, follow the instructions below for the respective project versions to get the application up and running.
 ### v1
 Before you can run quote-shufl.py, you will need to set up the proper configuration file for the database. `v1` reads the DB configurations (host, user, password, ports, etc.) from a **.ini** file. Replace the information in `/v1/conf/db.ini` with the information that corresponds to the database and user information that you set up previously.
 
