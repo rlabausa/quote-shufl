@@ -1,6 +1,5 @@
 import os
 import getpass
-from datetime import timedelta
 
 import psycopg2
 from dotenv import load_dotenv
@@ -68,7 +67,7 @@ def login():
         
         if user_id_found:
             user = User(username)
-            flask_login.login_user(user, duration=timedelta(minutes=5))
+            flask_login.login_user(user)
             return redirect(url_for('admin'))
                 
         else:
