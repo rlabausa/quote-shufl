@@ -10,7 +10,7 @@ This is a simple Python3 project to mark my entry into the database world and to
   - ~ORM with SQLAlchemy~
 - [ ] **v4**: to be continued...
 
-## Running the Program
+## Running Locally
 Before running either instances of the project, you will need to set up a PostgreSQL database with the relations described in the [Schema](#Schema) section. Sample data is provided in the `/data` directory of the repo, and can be loaded into the database by following the guide in the [psql](#Bulk-Loading-The-Data) section. In PostgreSQL, you will also need to create a user with the appropriate privileges in order to access the database. This is also covered in the [psql](#Creating-Users) section.
 
 Once the database is set up and the data is loaded in, you will need to install all the required dependencies. Change directories into the version of the project that you wish to run.
