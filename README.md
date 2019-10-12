@@ -74,7 +74,7 @@ You may adjust the *username* and *password* to any string that you wish, howeve
 Then, you will need to set up a VIEW in Postgres, which is accessed in the application (not in the original database design). 
 
 ```SQL
--- links the tables together for denormalized view
+-- links the tables together for UNF view
 CREATE VIEW combined_tables AS
 SELECT 
   q.id AS quote_id,
